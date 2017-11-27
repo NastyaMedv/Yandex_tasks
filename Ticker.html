@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8"> <title>Ticker!</title> 
+	
+	<script>
+		function Ticker() { 
+			this._i = 0;
+			};
+		
+		Ticker.prototype = { 
+			tick: function() {
+				console.log(this._i++); 
+				}
+			};
+		
+		var ticker = new Ticker();
+
+//		not working solution:		
+//		setInterval(ticker.tick, 1000);
+		
+//		best working solution:
+		setInterval(function () { ticker.tick(); }, 1000);
+		
+//		or this working solution:		
+//		setInterval(ticker.tick.bind(ticker), 1000);
+
+//		or this one (not the best but still working):
+//		setInterval('ticker.tick()', 1000);
+		
+	</script>
+</head>
+<body>
+	<h1>Ticker</h1>
+
+</body>
+</html>
