@@ -16,16 +16,22 @@
 		
 		var ticker = new Ticker();
 
-//		not working solution:		
+//		this._i не увеличивается из-за строки:		
 //		setInterval(ticker.tick, 1000);
 		
-//		best working solution:
+		
+//		Код, выполняемый в setTimeout, выполнятся в отдельном контексте выполнения. 
+//		Причина ошибки (this._i не увеличивается) в нашем примере заключается в том, 
+//		что в функции setTimeout значением this является глобальный объект window (который не имеет свойства _i).
+			
+		
+//		Чтобы исправить можно использовать функцию в качестве первого аргумента:
 		setInterval(function () { ticker.tick(); }, 1000);
 		
-//		or this working solution:		
+//		Можно также явно задать значение this с помощью функции bind():		
 //		setInterval(ticker.tick.bind(ticker), 1000);
 
-//		or this one (not the best but still working):
+//		Также в setTimeout можно передать строку кода, но этот метод считается небезопасным:
 //		setInterval('ticker.tick()', 1000);
 		
 	</script>
